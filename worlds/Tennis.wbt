@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.32255042097144293 -0.8761122432180731 -0.3583134985100907 1.8228916775203905
-  position -38.30330892749906 26.39328759910748 -4.331486657458516
+  orientation 0.24515981813156923 -0.9458172924225885 -0.2128997720245367 4.826737741479916
+  position 11.34474286732643 6.924490899317302 6.15752373341582
 }
 TexturedBackground {
 }
@@ -18,6 +18,7 @@ Floor {
   }
 }
 DEF Net Solid {
+  translation 0 0.5 0
   children [
     DEF Pole_2 Transform {
       translation 0 0 -7.3152
@@ -33,7 +34,8 @@ DEF Net Solid {
       ]
     }
     DEF Pole_1 Transform {
-      translation 0 0 7.3152
+      translation 0 1 7.3152
+      scale 1 3 1
       children [
         Shape {
           appearance CorrodedMetal {
@@ -46,6 +48,7 @@ DEF Net Solid {
       ]
     }
     DEF Net Transform {
+      scale 5 1 1
       children [
         Shape {
           appearance WireFence {
@@ -641,4 +644,18 @@ DEF Short_Fence_Far_From_Door Solid {
   ]
   name "fence_far_from_door(solid)"
   locked TRUE
+}
+DEF Camera_placeholder Solid {
+  translation 0 3.19964 7.27136
+  rotation 1 0 0 -0.261795307179586
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 1
+      }
+      geometry Box {
+        size 0.25 0.25 0.4
+      }
+    }
+  ]
 }
