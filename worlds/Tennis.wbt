@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.19000744057000685 -0.917350662972316 -0.34980699488759137 2.2343795690483645
-  position -35.115356850661215 38.61461229717201 -21.474820112888885
+  orientation -0.32255042097144293 -0.8761122432180731 -0.3583134985100907 1.8228916775203905
+  position -38.30330892749906 26.39328759910748 -4.331486657458516
 }
 TexturedBackground {
 }
@@ -17,7 +17,55 @@ Floor {
     colorOverride 0.581399 0.190173 0.0117494
   }
 }
+DEF Net Solid {
+  children [
+    DEF Pole_2 Transform {
+      translation 0 0 -7.3152
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 1.07
+            radius 0.04
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      translation 0 0 7.3152
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 1.07
+            radius 0.04
+          }
+        }
+      ]
+    }
+    DEF Net Transform {
+      children [
+        Shape {
+          appearance WireFence {
+            colorOverride 1 0.999969 0.999985
+            textureTransform TextureTransform {
+              scale 73.152 5.35
+            }
+          }
+          geometry Box {
+            size 0.01 1.07 14.6304
+          }
+        }
+      ]
+    }
+  ]
+  name "Net (solid)"
+  locked TRUE
+}
 DEF Lines Solid {
+  translation 0 0 0.01
   children [
     Transform {
       translation 0 0.01 0
@@ -37,6 +85,8 @@ DEF Lines Solid {
       ]
     }
   ]
+  name "Lines (solid)"
+  locked TRUE
 }
 DEF Long_No_Door_Fence Solid {
   translation 18.288 1.6002 9.144
