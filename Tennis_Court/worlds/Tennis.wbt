@@ -1,0 +1,573 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.0175230385596829 -0.9787661392986189 -0.20422974240328567 3.003814980958647
+  position -17.310613935933368 17.667574672873965 -37.349191564584
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 36.576 18.288
+  tileSize 3 3
+  appearance SandyGround {
+    colorOverride 0.581399 0.190173 0.0117494
+  }
+}
+DEF Long_No_Door_Fence Solid {
+  translation 18.288 1.6002 9.144
+  children [
+    DEF Pole_12 Transform {
+      translation -36.576 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_11 Transform {
+      translation -33.528 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -30.48 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -27.432 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_9 Transform {
+      translation -24.384 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_8 Transform {
+      translation -21.336 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_7 Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_6 Transform {
+      translation -15.24 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation -12.192 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation -9.114 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation -6.096 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation -3.048 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 109.728 9.6012
+            }
+          }
+          geometry Box {
+            size 36.576 3.2004 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "Fence_No_Door(solid)"
+  locked TRUE
+}
+DEF Long_With_Door_Fence Solid {
+  translation 18.288 1.6002 -9.144
+  children [
+    DEF Pole_11 Transform {
+      translation -33.528 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -30.48 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -27.432 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_9 Transform {
+      translation -24.384 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_8 Transform {
+      translation -21.336 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_7 Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_6 Transform {
+      translation -15.24 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation -12.192 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation -9.114 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation -6.096 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation -3.048 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation -16.764 0 0
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 100.584 9.6012
+            }
+          }
+          geometry Box {
+            size 33.528 3.2004 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "Fence_Pole_With_Door (solid)"
+  locked TRUE
+}
+DEF Short_Fence_Close_Door Solid {
+  translation -18.288 0 -9.144
+  children [
+    DEF Pole_6 Transform {
+      translation 0 1.6002 15.24
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation 0 1.6002 12.192
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation 0 1.6002 6.096
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation 0 1.6002 3.048
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      translation 0 1.6002 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 54.864 9.6012
+            }
+          }
+          geometry Box {
+            size 0.01 3.2004 18.288
+          }
+        }
+      ]
+    }
+  ]
+  name "fence_close_to_door(solid)"
+  locked TRUE
+}
+DEF Short_Fence_Far_From_Door Solid {
+  translation 18.288 0 -9.144
+  children [
+    DEF Pole_6 Transform {
+      translation 0 1.6002 15.24
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation 0 1.6002 12.192
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation 0 1.6002 6.096
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation 0 1.6002 3.048
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 54.864 9.6012
+            }
+          }
+          geometry Box {
+            size 0.01 3.2004 18.288
+          }
+        }
+      ]
+    }
+  ]
+  name "fence_far_from_door(solid)"
+  locked TRUE
+}
