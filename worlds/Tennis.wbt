@@ -27,7 +27,7 @@ DEF Lines Solid {
           appearance Appearance {
             texture ImageTexture {
               url [
-                "/Users/wanghuabing/Documents/Github/hardware/courtLines.png"
+                "textures/courtLines.png"
               ]
             }
           }
