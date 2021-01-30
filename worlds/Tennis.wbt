@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.24515981813156923 -0.9458172924225885 -0.2128997720245367 4.826737741479916
-  position 11.34474286732643 6.924490899317302 6.15752373341582
+  orientation 0.5208182239323197 -0.7315641562793049 -0.4399571148047649 4.582962723172276
+  position 14.811457384277595 26.851019125517627 9.737439394266481
 }
 TexturedBackground {
 }
@@ -656,6 +656,7 @@ DEF Camera_placeholder Solid {
       geometry Box {
         size 0.25 0.25 0.4
       }
+      isPickable FALSE
     }
   ]
 }
