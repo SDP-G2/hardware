@@ -25,6 +25,11 @@ def generate_launch_description():
         ]
     )
 
+    aruco_navigator = Node(
+        package="sdp",
+        executable="aruco_navigator"
+    )
+
     # talker_node = Node(
     #     package="sdp",
     #     executable="talker",
@@ -40,5 +45,6 @@ def generate_launch_description():
     
     
     return LaunchDescription([
+        # webots, aruco_navigator
         webots
     ])

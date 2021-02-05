@@ -43,6 +43,7 @@ setup(
             'talker = sdp.file:main',
             'listener = sdp.file2:main',
             'start_robot = sdp.slave_controller:main',
+            'aruco_navigator = sdp.aruco_navigator:main',
         ],
     },
 )

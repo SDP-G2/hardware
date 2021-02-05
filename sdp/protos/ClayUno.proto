@@ -9,7 +9,7 @@ Robot {
   rotation IS rotation
   children [
     Camera {
-      name "camera"
+      name "camera_0"
       translation 0 0.03 0.09
       rotation 0 1 0 3.14159
       children [
