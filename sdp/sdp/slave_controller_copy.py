@@ -26,21 +26,21 @@ class SlaveController(WebotsNode):
 
         self.timestep = TIMESTEP
 
-        # sleep(15)
+        sleep(15)
 
         # Enable Camera
 
         self.start_device_manager({
-            # 'camera_0': {
-            #     'disable': True
-            # }
+            'camera_0': {
+                'disable': True
+            }
         })
 
-        # self.camera = self.robot.getCamera('camera_0')
-        # self.camera.enable(self.timestep)
+        self.camera = self.robot.getCamera('camera_0')
+        self.camera.enable(self.timestep)
 
-        # self.imagePublisher_ = self.create_publisher(Image, '/camera/raw', 10)
-        # self.create_timer(self.timestep * 1e-1, self.publish_image)
+        self.imagePublisher_ = self.create_publisher(Image, '/camera/raw', 10)
+        self.create_timer(self.timestep * 1e-1, self.publish_image)
 
 
 
@@ -67,7 +67,7 @@ class SlaveController(WebotsNode):
         self.get_logger().info('All devices enabled and configured')
 
         # Create Subscriber
-        self.cmd_vel_subscriber = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+        self.cmd_vel_subscriber = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 1)
 
     def publish_image(self):
         image = self._wb_device.getImage()
