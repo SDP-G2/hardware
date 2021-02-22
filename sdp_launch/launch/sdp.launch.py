@@ -21,30 +21,47 @@ def generate_launch_description():
             ('package', 'sdp'),
             ('executable', 'start_robot'),
             ('world', PathJoinSubstitution(
-                [sdp_dir, 'worlds', 'tennis_court.wbt'])),
+                [sdp_dir, 'worlds', 'tennis_court_aruco.wbt'])),
         ]
     )
 
-    aruco_navigator = Node(
-        package="sdp",
-        executable="aruco_navigator"
+    ## Throws some strange error when launched together with the main controller
+    #  TODO: Resolve it with Webots expert
+    # aruco_navigator = Node(
+    #     package="sdp",
+    #     executable="aruco_navigator"
+    # )
+
+    # TRANSFORMS FROM THE WORLD COORDINATES TO ARUCO MARKERS
+
+    aruco_0_static_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="aruco_0_transform",
+        arguments=["-0.7", "-0.05", "0.5", "0", "0", "1.5708", "world", "aruco_0"]
     )
 
-    # talker_node = Node(
-    #     package="sdp",
-    #     executable="talker",
-    #     output='screen',
-    #     emulate_tty=True,
-    # )
-    # listener_node = Node(
-    #     package="sdp",
-    #     executable="listener",
-    #     output='screen',
-    #     emulate_tty=True,
+    aruco_1_static_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="aruco_1_transform",
+        arguments=["0.7", "-0.05", "0.5", "0", "0", "1.5708", "world", "aruco_1"]
+    )
+
+    # ROS publishes that by default (btw. it publishes it in a wrong way)
+    # TODO: Resolve it with Webots expert
+    # camera_static_tf = Node(
+    #     package="tf2_ros",
+    #     executable="static_transform_publisher",
+    #     name="base_to_camera_transform",
+    #     arguments=[".04", "0", "0.035", "-1.5708", "0", "0", "base_link", "camera_0"]
     # )
     
     
     return LaunchDescription([
-        # webots, aruco_navigator
-        webots
+        webots, 
+        aruco_0_static_tf, 
+        aruco_1_static_tf,
+        # aruco_navigator, 
+        # camera_static_tf,
     ])

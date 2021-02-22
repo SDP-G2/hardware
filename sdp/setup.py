@@ -19,6 +19,10 @@ data_files.append(
 )
 
 data_files.append(
+    (os.path.join('share', package_name, 'worlds'), ['worlds/tennis_court_aruco.wbt'])
+)
+
+data_files.append(
     (os.path.join('share', package_name, 'worlds', 'textures'), glob('worlds/textures/*'))
 )
 
@@ -40,10 +44,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = sdp.file:main',
-            'listener = sdp.file2:main',
+            'talker = sdp.rostest_talker:main',
+            'listener = sdp.rostest_listener:main',
             'start_robot = sdp.slave_controller:main',
-            'aruco_navigator = sdp.aruco_navigator:main',
+            'aruco_pose_estimator = sdp.aruco_pose_estimator:main',
         ],
     },
 )
