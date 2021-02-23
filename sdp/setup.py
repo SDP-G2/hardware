@@ -27,6 +27,10 @@ data_files.append(
 )
 
 data_files.append(
+    (os.path.join('share', package_name, 'controllers', 'main_controller'), glob('controllers/main_controller/*'))
+)
+
+data_files.append(
     ('share/' + package_name, ['package.xml'])
 )
 
