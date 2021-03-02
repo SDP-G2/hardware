@@ -26,7 +26,7 @@ import math
 
 class SlaveController(WebotsNode):
     def __init__(self, args):
-        super().__init__('slave_controller_node_2', args)
+        super().__init__('slave_controller_node', args)
 
         # Disable interface for GOD sensors as they are used only internally
         self.start_device_manager({
@@ -59,6 +59,14 @@ class SlaveController(WebotsNode):
         self.motor_front_right = self.robot.getDevice('wheel_motor_front_right')
         self.motor_front_right.setPosition(float('inf'))
         self.motor_front_right.setVelocity(0)
+
+        # self.motor_rear_left = self.robot.getDevice('wheel_motor_rear_left')
+        # self.motor_rear_left.setPosition(float('inf'))
+        # self.motor_rear_left.setVelocity(0)
+
+        # self.motor_rear_right = self.robot.getDevice('wheel_motor_rear_right')
+        # self.motor_rear_right.setPosition(float('inf'))
+        # self.motor_rear_right.setVelocity(0)
 
         self.motor_max_speed = self.motor_front_left.getMaxVelocity()
 
@@ -334,8 +342,12 @@ class SlaveController(WebotsNode):
         left_speed = min(self.motor_max_speed, max(-self.motor_max_speed, left_speed))
         right_speed = min(self.motor_max_speed, max(-self.motor_max_speed, right_speed))
 
+        print(left_speed)
+
         self.motor_front_left.setVelocity(left_speed)
+        # self.motor_rear_left.setVelocity(left_speed)
         self.motor_front_right.setVelocity(right_speed)
+        # self.motor_rear_right.setVelocity(right_speed)
 
 
 def main(args=None):

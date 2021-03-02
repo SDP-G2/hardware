@@ -72,7 +72,7 @@ class ImageProcessor(Node):
         if np.all(ids is not None):
 
             ## draw a square around the markers
-            # aruco.drawDetectedMarkers(frame, corners)
+            aruco.drawDetectedMarkers(frame, corners)
             
             # Get the transform from the camera_0 to robot's base_link
             try:
@@ -93,7 +93,7 @@ class ImageProcessor(Node):
                 rvec, tvec, _ = aruco.estimatePoseSingleMarkers(corners[i], MARKER_SIZE, camera_matrix, distorion_matrix)
 
                 ## draw axis on the aruco markers
-                # aruco.drawAxis(frame, camera_matrix, distorion_matrix, rvec, tvec, MARKER_SIZE / 2.0)
+                aruco.drawAxis(frame, camera_matrix, distorion_matrix, rvec, tvec, MARKER_SIZE / 2.0)
 
                 # Get the transform from the world to aruco_<id> 
                 try:
@@ -128,7 +128,7 @@ class ImageProcessor(Node):
 
         # Publish the estimate
         self.send_estimated_odometry(mean_pose, time)
-        # self.processed_image_publisher.publish(self.bridge.cv2_to_imgmsg(frame, 'rgb8'))
+        self.processed_image_publisher.publish(self.bridge.cv2_to_imgmsg(frame, 'rgb8'))
 
 
     def send_estimated_odometry(self, estimated_pose, time):

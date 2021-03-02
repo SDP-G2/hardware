@@ -52,6 +52,7 @@ setup(
             'listener = sdp.rostest_listener:main',
             'start_robot = sdp.slave_controller:main',
             'aruco_pose_estimator = sdp.aruco_pose_estimator:main',
+            'aruco_test_controller = sdp.slave_controller_aruco_test:main'
         ],
     },
 )

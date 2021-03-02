@@ -57,7 +57,6 @@ def generate_launch_description():
     #     arguments=[".04", "0", "0.035", "-1.5708", "0", "0", "base_link", "camera_0"]
     # )
     
-    
     return LaunchDescription([
         webots, 
         aruco_0_static_tf, 

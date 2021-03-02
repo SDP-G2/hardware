@@ -668,8 +668,8 @@ DEF Camera_placeholder Solid {
   ]
 }
 ClayUno {
-  translation -5.37153 0.0397607 -0.00638676
-  rotation 1.4231399995617367e-05 -0.9999999996920448 2.0331699993738747e-05 -0.7838053071795859
+  translation -3 0.0398051 -3.7
+  rotation 0 1 0 1.57
 }
 Solid {
   translation -0.03 0.5 -0.7
