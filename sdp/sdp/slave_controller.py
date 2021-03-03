@@ -16,6 +16,7 @@ import rclpy
 from webots_ros2_core.webots_node import WebotsNode
 from geometry_msgs.msg import Twist, TransformStamped, Vector3
 from nav_msgs.msg import Odometry
+from sdp_interfaces.srv import MotorEnable
 from sensor_msgs.msg import Image
 
 from .transformations import quaternion_from_euler
@@ -93,6 +94,8 @@ class SlaveController(WebotsNode):
         self.estimated_pose = [0, 0, 0]
 
 
+        self.are_motors_enabled = True
+
         ## Robot properties 
         # Those two parameters need to be determined/adjusted experimentally
         self.wheel_radius = .04
@@ -120,12 +123,30 @@ class SlaveController(WebotsNode):
         # Velocity controller subscriber
         self.cmd_vel_subscriber = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
 
+        # Service blocking motors
+        self.motor_switch_service = self.create_service(MotorEnable, 'motor_switch', self.switch_motors_onoff) 
+
         # ROS Transform broadcaster
         self.transform_broadcaster = tf2_ros.TransformBroadcaster(node=self)
 
         self.get_logger().info('All devices enabled and configured')
 
     
+    def switch_motors_onoff(self, request, response):
+        self.are_motors_enabled = request.enabled
+
+        if not self.are_motors_enabled:
+            self.motor_front_left.setVelocity(0)
+            # self.motor_rear_left.setVelocity(0)
+            self.motor_front_right.setVelocity(0)
+            # self.motor_rear_right.setVelocity(0)
+
+        self.get_logger().info('Turning the motors {}!'.format('on' if self.are_motors_enabled else 'off'))
+
+        response.enabled = self.are_motors_enabled
+        return response
+
+
     def update_odometry(self):
         # exit if the variables are not initialised
         if not self.INIT_VARS:
@@ -333,6 +354,9 @@ class SlaveController(WebotsNode):
         # Update odometry to flush the encoder readings
         self.update_odometry()
 
+        if not self.are_motors_enabled:
+            return
+
         # Code from some tutorial to convert from v, w to velocities of individual wheels (might be wrong)
         left_speed = ((2.0 * msg.linear.x - msg.angular.z * self.wheel_separation) / (2.0 * self.wheel_radius))
         right_speed = ((2.0 * msg.linear.x + msg.angular.z * self.wheel_separation) / (2.0 * self.wheel_radius))
@@ -352,7 +376,9 @@ class SlaveController(WebotsNode):
 
 def main(args=None):
     rclpy.init(args=args)
+
     controller = SlaveController(args=args)
+    
     rclpy.spin(controller)
 
     controller.destroy_node()

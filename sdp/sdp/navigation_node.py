@@ -2,7 +2,7 @@ import rclpy
 from rclpy.action import ActionServer
 from rclpy.node import Node
 
-from action_interfaces.action import Follow
+from sdp_interfaces.action import Follow
 
 import time
 
@@ -37,7 +37,7 @@ class NavigationServer(Node):
             # INSERT THE CODE PROCESSING THE PATH HERE
             #
 
-            time.sleep(5) # SIMULATES THE PROCESSING
+            time.sleep(1) # SIMULATES THE PROCESSING
 
             path_to_follow = path_to_follow[2:] # UPDATE THE REMAINING PATH WHEN POINT IS REACHED
 
