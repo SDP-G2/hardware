@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(action_interfaces)
+project(sdp_interfaces)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -35,7 +35,8 @@ endif()
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/MotorEnable.srv"
   "action/Follow.action"
-)
+ )
 
 ament_package()
