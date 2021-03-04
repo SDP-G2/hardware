@@ -2,8 +2,16 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
+from nav_msgs.msg import Odometry
 from sdp_interfaces.action import Follow
 from sdp_interfaces.srv import MotorEnable
+
+from .api_client import APIClient
+from .transformations import euler_from_quaternion
+
+from .command_statuses import CommandStatus
+from .task_types import TaskTypes
+from .robot_states import RobotStates
 
 
 class RobotStateController(Node):
@@ -11,18 +19,45 @@ class RobotStateController(Node):
     def __init__(self):
         super().__init__('robot_state_controller')
 
+        self.robot_state = RobotStates.Init
+        self.serial_number = None
+        self.battery = 100 # int [0-100] 
+        self.blocked = False
+        self.aborted = False
+        self.current_command_id = None
+
+        self.api_client = APIClient(self.serial_number)
+
+        self.robot_pose = None
+
         # Client for the Navigation action serverc
         self._follow_action_client = ActionClient(self, Follow, 'follow')
 
         # Follow Testing 
-        self.create_timer(10, self.send_follow_goal)
+        # self.create_timer(10, self.send_follow_goal)
         self.send_follow_goal()
 
 
         # Client for Motor Switch service
         self._motor_switch_client = self.create_client(MotorEnable, 'motor_switch')
 
-        
+        # Robot pose subscriber
+        self.odom_subscriber = self.create_subscription(Odometry, '/odometry', self.odometry_callback, 10)
+
+
+    def odometry_callback(self, msg):
+        x = msg.pose.pose.position.x
+        y = msg.pose.pose.position.y
+
+        rotation = euler_from_quaternion([
+            msg.pose.pose.orientation.x,
+            msg.pose.pose.orientation.y,
+            msg.pose.pose.orientation.z,
+            msg.pose.pose.orientation.w
+        ])
+
+        self.robot_pose = [x, y, rotation[2]]
+
 
     def switch_off_motors(self):
         # wait for the service to become available
@@ -70,7 +105,7 @@ class RobotStateController(Node):
         goal_msg = Follow.Goal()
 
         # GENERATE THE PATH HERE
-        goal_msg.path = [0., 0., 1., 1., 2., 2., 3., 3., 0., 0.]
+        goal_msg.path = [-2., -8., -2., -4., 0., -4., 0., -8., 2., -8., 2., -4.]
 
         self._follow_action_client.wait_for_server()
 
@@ -99,7 +134,6 @@ class RobotStateController(Node):
             self.get_logger().info('Robot has failed to follow the path!')
             self.get_logger().info('Nav status code: {}'.format(nav_status_code))
 
-        self.switch_off_motors()
 
 def main(args=None):
     rclpy.init(args=args)

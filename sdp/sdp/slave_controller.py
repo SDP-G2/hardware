@@ -135,6 +135,7 @@ class SlaveController(WebotsNode):
     def switch_motors_onoff(self, request, response):
         self.are_motors_enabled = request.enabled
 
+        # Stop motors if we are blocking them
         if not self.are_motors_enabled:
             self.motor_front_left.setVelocity(0)
             # self.motor_rear_left.setVelocity(0)

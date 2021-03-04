@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
-from geometry_msgs.msg import Twist, Vector3
+from geometry_msgs.msg import Vector3
 from nav_msgs.msg import Odometry
 import numpy as np
 import cv2
