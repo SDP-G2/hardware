@@ -16,7 +16,7 @@ timestep = 64
 #  ds = robot.getDevice('dsname')
 #  ds.enable(timestep)
 motors = []
-motorsNames = ['FrontLeftMotor', 'FrontRightMotor',  'BackRightMotor','BackLeftMotor']
+motorsNames = ['wheel_motor_front_left', 'wheel_motor_front_right',  'wheel_motor_rear_right','wheel_motor_rear_left']
 for i in range(4):
     motors.append(robot.getDevice(motorsNames[i]))
     motors[i].setPosition(float('inf'))
