@@ -6,13 +6,15 @@
 #include <webots/GPS.hpp>
 #include <webots/InertialUnit.hpp>
 
+#include <iostream>
+
 #define TIME_STEP 64
 using namespace webots;
+using namespace std;
 
 int main(int argc, char **argv) {
   Robot *robot = new Robot();
   Keyboard kb;
-  DistanceSensor *ds[2];
   
  
   Motor *wheels[4];
@@ -23,10 +25,25 @@ int main(int argc, char **argv) {
     wheels[i]->setVelocity(0.0);
   }
   
+  DistanceSensor *ps[1];
+  //Sharp's IR sensor GP2Y0A710K0F
+  char psNames[1][32] = {"Sharp's IR sensor GP2Y0A710K0F"};
+  for (int i = 0; i < 1; i++) {
+  ps[i] = robot->getDistanceSensor(psNames[i]);
+  ps[i]->enable(TIME_STEP);
+}
+
   kb.enable(TIME_STEP);
   double leftSpeed = 10.0;
   double rightSpeed = 10.0;
+  
   while (robot->step(TIME_STEP) != -1) {
+    double psValues[1];
+        for (int i = 0; i < 1 ; i++)
+          psValues[i] = ps[i]->getValue();
+    
+    cout << psValues[0] <<endl;
+    
     int key=kb.getKey();
     
     if (key==315){
