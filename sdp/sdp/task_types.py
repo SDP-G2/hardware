@@ -1,5 +1,8 @@
 from enum import Enum
 
 class TaskTypes(Enum):
-    Circular = 'Circular'
-    ZigZag = 'ZigZag'
+    Idle = 'Idle'
+    AbortLowBattery ='LowBattery'
+    AbortSafety = 'Safety'
+    TaskCircular = 'Circular'
+    TaskZigZag = 'ZigZag'

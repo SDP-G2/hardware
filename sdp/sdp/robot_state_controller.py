@@ -1,10 +1,13 @@
+import asyncio
+import json
+
 import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
 from nav_msgs.msg import Odometry
 from sdp_interfaces.action import Follow
-from sdp_interfaces.srv import MotorEnable
+from sdp_interfaces.srv import MotorEnable, NavConfirmation
 
 from .api_client import APIClient
 from .transformations import euler_from_quaternion
@@ -13,18 +16,22 @@ from .command_statuses import CommandStatus
 from .task_types import TaskTypes
 from .robot_states import RobotStates
 
-
 class RobotStateController(Node):
 
     def __init__(self):
         super().__init__('robot_state_controller')
 
+        self.init_complete = False
+
         self.robot_state = RobotStates.Init
-        self.serial_number = None
+        
+        self.serial_number = "serial1"
         self.battery = 100 # int [0-100] 
         self.blocked = False
-        self.aborted = False
+
+        self.current_command = TaskTypes.Idle
         self.current_command_id = None
+        self.current_command_status = CommandStatus.Pending
 
         self.api_client = APIClient(self.serial_number)
 
@@ -35,15 +42,137 @@ class RobotStateController(Node):
 
         # Follow Testing 
         # self.create_timer(10, self.send_follow_goal)
-        self.send_follow_goal()
+        # self.send_follow_goal()
 
 
         # Client for Motor Switch service
         self._motor_switch_client = self.create_client(MotorEnable, 'motor_switch')
 
+        self._nav_confirmation_service = self.create_service(NavConfirmation, 'nav_confirm', self.end_of_nav_callback) 
+
         # Robot pose subscriber
         self.odom_subscriber = self.create_subscription(Odometry, '/odometry', self.odometry_callback, 10)
 
+        self.api_timer = self.create_timer(1.0, self.api_call)
+
+
+    def end_of_nav_callback(self, request, response):
+        if request.success:
+            self.get_logger().info('Finished navigation!')
+            if self.robot_state == RobotStates.Task:
+                self._next_state(self.current_command_id, self.current_command, CommandStatus.Completed)
+        else:
+            self.get_logger().info("Shouldn't ever be the case!")
+        
+        return response
+
+
+    async def api_call(self):
+        if self.robot_state != RobotStates.Init:
+            # inject paused status whenever robot is in the middle of the task and there is obstacle in front
+            command_status = CommandStatus.Paused if self.blocked and self.robot_state == RobotStates.Task else self.current_command_status
+            poll_res = json.loads(await self.api_client.poll(self.battery, self.current_command_id, command_status))
+
+            print(poll_res)
+
+            self._next_state(poll_res['command_id'], self.api_client.instruction_to_robot_task(poll_res)) # TODO: Implement TASK exctraction
+        else:
+            init_res = json.loads(await self.api_client.init(self.battery))
+            print(init_res)
+            self._next_state(init_res['command_id'],  self.api_client.instruction_to_robot_task(init_res))
+
+    def _next_state(self, id: int, instruction: TaskTypes, status: CommandStatus = None,):
+        
+        # DEBUGGING: print state before changes
+        self.get_logger().info('Before state update:')
+        self._print_robot_state()
+
+        if self.robot_state == RobotStates.Init:
+            self.current_command = instruction
+            self.current_command_id = id
+            self.current_command_status = CommandStatus.InProgress
+            
+            if instruction.value == RobotStates.Idle.value:
+                self.robot_state = RobotStates.Idle
+            else:
+                self.robot_state = RobotStates.Task
+
+        if self.robot_state == RobotStates.Idle:
+
+            self.get_logger().info('Inside Idle')
+                       
+            if instruction in [TaskTypes.AbortLowBattery, TaskTypes.AbortSafety]:
+                # Abort instructions are executed immediately
+
+                self.get_logger().info('INSIDE FRICKING bATTERRY:')
+
+                self.current_command = instruction
+                self.current_command_id = id
+                self.current_command_status = CommandStatus.InProgress
+                self.switch_off_motors()
+            
+            elif instruction in [TaskTypes.TaskCircular, TaskTypes.TaskZigZag]:
+                self.robot_state = RobotStates.Task
+
+                self.current_command = instruction
+                self.current_command_id = id
+                self.current_command_status = CommandStatus.InProgress
+
+                if instruction == TaskTypes.TaskCircular:
+                    new_path = self.generate_circular_path(0,0)
+                elif instruction == TaskTypes.TaskZigZag:
+                    new_path = self.generate_zigzag_path(0,0)
+
+                # TODO: Add moving from starting point and to finish point
+                self.send_follow_goal(new_path)
+
+            elif instruction == TaskTypes.Idle:
+                self.current_command = instruction
+                self.current_command_id = id
+                self.current_command_status = CommandStatus.InProgress
+
+
+        
+        if self.robot_state == RobotStates.Task:
+            
+            # TODO: Do nothing for LowBattery?
+
+            if id == self.current_command_id:
+                
+                if status is not None:
+                    # TODO: How to switch to idle?
+                    # Send completed as long as it assigns a new task
+                    self.current_command_status = status
+                
+            elif instruction == TaskTypes.AbortSafety:
+                self.robot_state = RobotStates.Idle
+
+                # Abort instructions are executed immediately
+                self.current_command = instruction
+                self.current_command_id = id
+                self.current_command_status = CommandStatus.InProgress
+                self.switch_off_motors()
+
+            elif self.current_command_status == CommandStatus.Completed:
+                self.robot_state = RobotStates.Idle
+                self._next_state(id, instruction, status)
+
+        # DEBUGGING: print state before changes
+        self.get_logger().info('After state update:')
+        self._print_robot_state()
+
+
+    def _print_robot_state(self):
+        self.get_logger().info(f'State:\nRobot State: {self.robot_state.value}\nCurrent Task: ({self.current_command_id}) {self.current_command.value}\nTask Status {self.current_command_status.value}\nObstacle Detected?: {self.blocked}')
+
+
+    def generate_circular_path(self, end_x, end_y):
+        # TODO: Implement
+        return [0.,0.,2.,2.]
+    
+    def generate_zigzag_path(self, end_x, end_y):
+        # TODO: Implement
+        return [1.,1.,-1.,-1.]
 
     def odometry_callback(self, msg):
         x = msg.pose.pose.position.x
@@ -58,7 +187,7 @@ class RobotStateController(Node):
 
         self.robot_pose = [x, y, rotation[2]]
 
-
+ 
     def switch_off_motors(self):
         # wait for the service to become available
         while not self._motor_switch_client.wait_for_service(timeout_sec=1.0):
@@ -75,10 +204,25 @@ class RobotStateController(Node):
         are_motors_enabled = future.result().enabled
         if not are_motors_enabled:
             self.get_logger().info('Motors are off!')
+            self.shut_down_controller()
+
         else: 
             self.get_logger().info('Not managed to shut the motors! Repeating...')
             self.switch_off_motors()
-            
+
+    def shut_down_controller(self):
+        # Stop polling the server
+        self.api_timer.cancel()
+
+        # Cancel any active nav tasks
+        EMPTY_PATH = []
+        self.send_follow_goal(EMPTY_PATH)
+        
+        self.get_logger().info('About to poll completed abort')
+
+        # Update Abort instruction status to completed and notify the server 
+        self.current_command_status = CommandStatus.Completed 
+        self.api_client.poll(self.battery, self.current_command_id, self.current_command_status)
 
     def switch_on_motors(self):
         # wait for the service to become available
@@ -101,11 +245,11 @@ class RobotStateController(Node):
             self.switch_on_motors()
             
 
-    def send_follow_goal(self):
+    def send_follow_goal(self, path):
         goal_msg = Follow.Goal()
 
         # GENERATE THE PATH HERE
-        goal_msg.path = [-2., -8., -2., -4., 0., -4., 0., -8., 2., -8., 2., -4.]
+        goal_msg.path = path
 
         self._follow_action_client.wait_for_server()
 
@@ -122,6 +266,8 @@ class RobotStateController(Node):
             return
 
         self.get_logger().info('Follow goal accepted :)')
+
+        self.current_command_status = CommandStatus.InProgress
 
         self._get_follow_result_future = goal_handle.get_result_async()
         self._get_follow_result_future.add_done_callback(self.get_follow_result_callback)

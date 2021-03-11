@@ -148,6 +148,7 @@ class SlaveController(WebotsNode):
         return response
 
 
+
     def update_odometry(self):
         # exit if the variables are not initialised
         if not self.INIT_VARS:

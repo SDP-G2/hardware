@@ -36,6 +36,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/MotorEnable.srv"
+  "srv/NavConfirmation.srv"
   "action/Follow.action"
  )
 

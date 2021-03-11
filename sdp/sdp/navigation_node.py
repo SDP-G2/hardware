@@ -2,9 +2,10 @@ import rclpy
 from rclpy.action import ActionServer, GoalResponse
 from rclpy.node import Node
 
-from sdp_interfaces.action import Follow
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
+from sdp_interfaces.srv import NavConfirmation
+from sdp_interfaces.action import Follow
 
 from .transformations import euler_from_quaternion
 
@@ -51,7 +52,8 @@ class NavigationServer(Node):
         # velocity command publisher
         self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
 
-        # self._action_server.
+        self._nav_confirm_client = self.create_client(NavConfirmation, 'nav_confirm')
+
 
     def odometry_callback(self, msg):
         x = msg.pose.pose.position.x
@@ -66,7 +68,7 @@ class NavigationServer(Node):
 
         self.robot_pose = [x, y, rotation[2]]
 
-        self.get_logger().info(f'{self.robot_pose}')
+        # self.get_logger().info(f'{self.robot_pose}')
 
         self.navigate_callback()
 
@@ -128,7 +130,19 @@ class NavigationServer(Node):
                 # By default all the messages are init with 0s
                 self.path_to_follow = None
                 self.cmd_vel_publisher.publish(Twist())
+                self.notify_controller_about_completion(True)
         
+
+    def notify_controller_about_completion(self, succeeded):
+        # wait for the service to become available
+        while not self._nav_confirm_client.wait_for_service(timeout_sec=1.0):
+            continue
+        
+        request = NavConfirmation.Request()
+        request.success = succeeded
+
+        future = self._nav_confirm_client.call_async(request)
+
 
     def execute_callback(self, goal_handle):
         self.get_logger().info('Executing goal...')
