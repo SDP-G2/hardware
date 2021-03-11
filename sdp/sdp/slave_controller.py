@@ -61,13 +61,13 @@ class SlaveController(WebotsNode):
         self.motor_front_right.setPosition(float('inf'))
         self.motor_front_right.setVelocity(0)
 
-        # self.motor_rear_left = self.robot.getDevice('wheel_motor_rear_left')
-        # self.motor_rear_left.setPosition(float('inf'))
-        # self.motor_rear_left.setVelocity(0)
+        self.motor_rear_left = self.robot.getDevice('wheel_motor_rear_left')
+        self.motor_rear_left.setPosition(float('inf'))
+        self.motor_rear_left.setVelocity(0)
 
-        # self.motor_rear_right = self.robot.getDevice('wheel_motor_rear_right')
-        # self.motor_rear_right.setPosition(float('inf'))
-        # self.motor_rear_right.setVelocity(0)
+        self.motor_rear_right = self.robot.getDevice('wheel_motor_rear_right')
+        self.motor_rear_right.setPosition(float('inf'))
+        self.motor_rear_right.setVelocity(0)
 
         self.motor_max_speed = self.motor_front_left.getMaxVelocity()
 
@@ -138,9 +138,9 @@ class SlaveController(WebotsNode):
         # Stop motors if we are blocking them
         if not self.are_motors_enabled:
             self.motor_front_left.setVelocity(0)
-            # self.motor_rear_left.setVelocity(0)
+            self.motor_rear_left.setVelocity(0)
             self.motor_front_right.setVelocity(0)
-            # self.motor_rear_right.setVelocity(0)
+            self.motor_rear_right.setVelocity(0)
 
         self.get_logger().info('Turning the motors {}!'.format('on' if self.are_motors_enabled else 'off'))
 
@@ -371,9 +371,9 @@ class SlaveController(WebotsNode):
         print(left_speed)
 
         self.motor_front_left.setVelocity(left_speed)
-        # self.motor_rear_left.setVelocity(left_speed)
+        self.motor_rear_left.setVelocity(left_speed)
         self.motor_front_right.setVelocity(right_speed)
-        # self.motor_rear_right.setVelocity(right_speed)
+        self.motor_rear_right.setVelocity(right_speed)
 
 
 def main(args=None):

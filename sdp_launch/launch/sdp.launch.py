@@ -50,17 +50,17 @@ def generate_launch_description():
 
     # ROS publishes that by default (btw. it publishes it in a wrong way)
     # TODO: Resolve it with Webots expert
-    # camera_static_tf = Node(
-    #     package="tf2_ros",
-    #     executable="static_transform_publisher",
-    #     name="base_to_camera_transform",
-    #     arguments=[".04", "0", "0.035", "-1.5708", "0", "0", "base_link", "camera_0"]
-    # )
+    camera_static_tf = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="base_to_camera_transform",
+        arguments=["0.25", "0", "0.11", "-1.5708", "0", "0", "base_link", "camera_0"]
+    )
     
     return LaunchDescription([
         webots, 
         aruco_0_static_tf, 
         aruco_1_static_tf,
         # aruco_navigator, 
-        # camera_static_tf,
+        camera_static_tf,
     ])
