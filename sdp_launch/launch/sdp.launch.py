@@ -38,14 +38,14 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="aruco_0_transform",
-        arguments=["-0.7", "-0.05", "0.5", "0", "0", "1.5708", "world", "aruco_0"]
+        arguments=["-0.7", "-0.05", "1", "0", "0", "1.5708", "world", "aruco_0"]
     )
 
     aruco_1_static_tf = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         name="aruco_1_transform",
-        arguments=["0.7", "-0.05", "0.5", "0", "0", "1.5708", "world", "aruco_1"]
+        arguments=["0.7", "-0.05", "1", "0", "0", "1.5708", "world", "aruco_1"]
     )
 
     # ROS publishes that by default (btw. it publishes it in a wrong way)
@@ -58,7 +58,7 @@ def generate_launch_description():
     )
     
     return LaunchDescription([
-        webots, 
+        webots,
         aruco_0_static_tf, 
         aruco_1_static_tf,
         # aruco_navigator, 

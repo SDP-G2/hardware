@@ -13,4 +13,4 @@ curl --location --request POST 'localhost:8000/auth' \
     "password":"password1"
 }'
 
-# jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMSIsImV4cCI6MTYxNTQ4NDIzMX0.RlVx4Dsv1JUNdGcfztepXttPbKgGDX2v2u8xMX6JHnw 
+# jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMSIsImV4cCI6MTYxNTY0NTg2NX0.UmBtxjdmVEiVjePDBOfURGQcxvFDjbAWqXQBLlGWuXE 

@@ -30,8 +30,8 @@ def in_range(x1, y1, x2, y2, threshold: float = 0.2):
     return dist <= threshold
 
 
-DEFAULT_LINEAR_VEL = .4
-DEFUALT_ANGULAR_VEL = .4
+DEFAULT_LINEAR_VEL = .2
+DEFUALT_ANGULAR_VEL = 2.1
 
 class NavigationServer(Node):
 
@@ -47,7 +47,7 @@ class NavigationServer(Node):
         self.path_to_follow = None
 
         # Robot pose subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, '/odometry', self.odometry_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, '/GOD/odometry', self.odometry_callback, 10)
 
         # velocity command publisher
         self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
@@ -112,10 +112,10 @@ class NavigationServer(Node):
                     if almost(self.robot_pose[2], theta, tolerance=angle_tolerance):
                         cmd_vel.linear.x = DEFAULT_LINEAR_VEL
                     elif self.robot_pose[2] < theta:
-                        # cmd_vel.linear.x = DEFAULT_LINEAR_VEL
+                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL
                         cmd_vel.angular.z = DEFUALT_ANGULAR_VEL
                     else: # self.robot_pose[2] > theta
-                        # cmd_vel.linear.x = DEFAULT_LINEAR_VEL
+                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL
                         cmd_vel.angular.z = -DEFUALT_ANGULAR_VEL
 
                     # publish the message

@@ -21,7 +21,7 @@ class ImageProcessor(Node):
         super().__init__('image_processor_node')
 
         ## Node's subscribers / publishers
-        self.camera_subscriber = self.create_subscription(Image, '/camera_0/image_raw', self.image_processing_callback, 10)
+        self.camera_subscriber = self.create_subscription(Image, '/camera_0/image_raw', self.image_processing_callback, 1)
         self.processed_image_publisher = self.create_publisher(Image, '/camera_0/processed', 10)
         
         # publishes pose estiamted from detected aruco markers
@@ -42,6 +42,9 @@ class ImageProcessor(Node):
 
         self.get_logger().info('INIT COMPLETE')
 
+
+    def euclidean_distance(self, x, y, z):
+        return math.sqrt(x**2+y**2+z**2)
 
     def image_processing_callback(self, msg):
         # Get timestamp for the operation
@@ -92,6 +95,12 @@ class ImageProcessor(Node):
                 # rvec and tvec transformations from camera_0->aruco
                 rvec, tvec, _ = aruco.estimatePoseSingleMarkers(corners[i], MARKER_SIZE, camera_matrix, distorion_matrix)
 
+                dist_to_marker = self.euclidean_distance(tvec[0][0][0], tvec[0][0][1], tvec[0][0][2])
+
+                if dist_to_marker > 6 or dist_to_marker < 2:
+                    self.get_logger().info(f'Dist to marker = {dist_to_marker}')
+                    continue
+
                 ## draw axis on the aruco markers
                 aruco.drawAxis(frame, camera_matrix, distorion_matrix, rvec, tvec, MARKER_SIZE / 2.0)
 
@@ -106,7 +115,7 @@ class ImageProcessor(Node):
                 estimated_pose = self.estimate_robot_pose(rvec=rvec[0][0], tvec=tvec[0][0], T_w_a=T_w_a, T_c_b=T_c_b)
                 
                 pose_estimates.append(estimated_pose)
-                # print(f'Pose estimated from marker {ids[i]}: {estimated_pose}') # DEBUG
+                self.get_logger().info(f'Pose estimated from marker {ids[i]}: {estimated_pose}') # DEBUG
         else:
             return
 
@@ -118,7 +127,7 @@ class ImageProcessor(Node):
         mean_pose = np.mean(np.array(pose_estimates), axis=0)
 
         # rotate yaw (theta) by pi/2 as ROS2 publishes wrong transform
-        mean_pose[2] -= math.pi / 2.0
+        # mean_pose[2] -= math.pi / 2.0
 
         # fit into [-PI, PI] range
         if mean_pose[2] > math.pi:
