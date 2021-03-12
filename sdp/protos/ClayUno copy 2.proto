@@ -1,0 +1,144 @@
+PROTO ClayUno [
+    field SFVec3f       translation -1.36153 0.0397206 0
+    field SFRotation    rotation    5.094392413096958e-06 0.999999999955074 -7.993691960388285e-06 3.140000002421179
+    field SFString      controller  "<extern>"
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Gyro {
+      name "god_gyro"
+    }
+    Camera {
+      translation 0 0.035 0.04
+      rotation 0 1 0 3.14
+      children [
+        Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.02 0.02 0.02
+          }
+        }
+      ]
+      name "camera_0"
+      width 1280
+      height 720
+    }
+    Solid {
+      translation 0 -0.01 0.04
+      children [
+        DEF RobotSupp Shape {
+          appearance PBRAppearance {
+          }
+          geometry Capsule {
+            height 0.04
+            radius 0.01
+          }
+        }
+      ]
+      name "solid(2)"
+      contactMaterial "slid"
+      boundingObject USE RobotSupp
+      physics Physics {
+      }
+    }
+    Solid {
+      translation 0 -0.01 -0.04
+      children [
+        USE RobotSupp
+      ]
+      name "solid(3)"
+      contactMaterial "slid"
+      boundingObject USE RobotSupp
+      physics Physics {
+      }
+    }
+    InertialUnit {
+      name "god_imu"
+    }
+    GPS {
+      name "god_gps"
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1.4524473887901218e-09
+        anchor 0.06 0 0
+      }
+      device [
+        PositionSensor {
+          name "ps_front_left"
+        }
+        RotationalMotor {
+          name "wheel_motor_front_left"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 0
+        rotation -7.268019220231339e-10 7.262236158591619e-10 1 1.5699999999999943
+        children [
+          DEF RobotWheel Shape {
+            appearance PBRAppearance {
+              baseColor 1 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE RobotWheel
+        physics Physics {
+        }
+        linearVelocity 2.0548726022114514e-16 -1.4135801420447685e-16 4.831636226569968e-17
+        angularVelocity 1.278656109131291e-15 -1.228489135573697e-16 -6.3730160260819285e-15
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position -1.4506940927480136e-09
+        anchor -0.06 0 0
+      }
+      device [
+        PositionSensor {
+          name "ps_front_right"
+        }
+        RotationalMotor {
+          name "wheel_motor_front_right"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 0
+        rotation -7.259245756256641e-10 7.253464966227121e-10 1 1.5699999999999972
+        children [
+          USE RobotWheel
+        ]
+        name "solid(1)"
+        boundingObject USE RobotWheel
+        physics Physics {
+        }
+        linearVelocity 3.8057361110656173e-17 7.067831002304544e-17 5.950514523327977e-17
+        angularVelocity 1.6811216435353437e-15 -1.21842530534281e-16 -2.2697135129179416e-18
+      }
+    }
+    DEF RobotBody Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.05 0.1
+      }
+    }
+  ]
+  name "ClayUno"
+  boundingObject USE RobotBody
+  physics Physics {
+  }
+  controller IS controller
+}
+}
