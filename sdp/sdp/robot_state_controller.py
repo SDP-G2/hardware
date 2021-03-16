@@ -5,6 +5,8 @@ import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
 
+from .patterns import Point, gen_circular, gen_zig_zag, TURN_DIR
+
 from nav_msgs.msg import Odometry
 from sdp_interfaces.action import Follow
 from sdp_interfaces.srv import MotorEnable, NavConfirmation
@@ -84,8 +86,8 @@ class RobotStateController(Node):
     def _next_state(self, id: int, instruction: TaskTypes, status: CommandStatus = None,):
         
         # DEBUGGING: print state before changes
-        self.get_logger().info('Before state update:')
-        self._print_robot_state()
+        # self.get_logger().info('Before state update:')
+        # self._print_robot_state()
 
         if self.robot_state == RobotStates.Init:
             self.current_command = instruction
@@ -164,15 +166,20 @@ class RobotStateController(Node):
 
     def _print_robot_state(self):
         self.get_logger().info(f'State:\nRobot State: {self.robot_state.value}\nCurrent Task: ({self.current_command_id}) {self.current_command.value}\nTask Status {self.current_command_status.value}\nObstacle Detected?: {self.blocked}')
+        pass
 
 
     def generate_circular_path(self, end_x, end_y):
-        # TODO: Implement
-        return [0.,0.,2.,2.]
-    
+        path = gen_circular(Point(-6., -1.5), TURN_DIR.RIGHT, 12., 2, 0)
+        return sum([ [p.x, p.y] for p in path ], [])
+
     def generate_zigzag_path(self, end_x, end_y):
-        # TODO: Implement
-        return [1.,1.,-1.,-1.]
+        path = gen_zig_zag(Point(-6., -1.5), TURN_DIR.RIGHT, 12., 2, 0) 
+        path = sum([ [p.x, p.y] for p in path ], [])
+        # for p in path:
+        #     self.get_logger().info(f'{p}')
+        return path
+
 
     def odometry_callback(self, msg):
         x = msg.pose.pose.position.x

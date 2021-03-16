@@ -30,7 +30,7 @@ def in_range(x1, y1, x2, y2, threshold: float = 0.2):
     return dist <= threshold
 
 
-DEFAULT_LINEAR_VEL = .2
+DEFAULT_LINEAR_VEL = .75
 DEFUALT_ANGULAR_VEL = 2.1
 
 class NavigationServer(Node):
@@ -83,7 +83,7 @@ class NavigationServer(Node):
             if self.path_to_follow:
                 target = self.path_to_follow[:2]
                 
-                self.get_logger().info('Going to point <{}, {}>'.format(target[0], target[1]))
+                # self.get_logger().info('Going to point <{}, {}>'.format(target[0], target[1]))
 
                 if not in_range(self.robot_pose[0], self.robot_pose[1], target[0], target[1]):
                     # Initialize cmd_vel message
@@ -107,16 +107,16 @@ class NavigationServer(Node):
                     # angle_tolerance = 20 * RAD_PER_DEG
                     angle_tolerance = max(math.pi/2 - math.atan(distance/.05), .05)
 
-                    self.get_logger().info(f'ROBOT: {self.robot_pose[2]}, TARGET: {theta}')
+                    # self.get_logger().info(f'ROBOT: {self.robot_pose[2]}, TARGET: {theta}')
                     
                     if almost(self.robot_pose[2], theta, tolerance=angle_tolerance):
                         cmd_vel.linear.x = DEFAULT_LINEAR_VEL
                     elif self.robot_pose[2] < theta:
-                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL
+                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL / 2.5
                         cmd_vel.angular.z = DEFUALT_ANGULAR_VEL
                     else: # self.robot_pose[2] > theta
-                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL
-                        cmd_vel.angular.z = -DEFUALT_ANGULAR_VEL
+                        cmd_vel.linear.x = DEFAULT_LINEAR_VEL / 2.5
+                        cmd_vel.angular.z = -DEFUALT_ANGULAR_VEL 
 
                     # publish the message
                     self.cmd_vel_publisher.publish(cmd_vel)
