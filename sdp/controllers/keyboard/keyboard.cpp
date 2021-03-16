@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
   
   DistanceSensor *ps[1];
   //Sharp's IR sensor GP2Y0A710K0F
-  char psNames[1][32] = {"Sharp's IR sensor GP2Y0A710K0F"};
+  char psNames[1][32] = {"distance_sensor_front"};
   for (int i = 0; i < 1; i++) {
   ps[i] = robot->getDistanceSensor(psNames[i]);
   ps[i]->enable(TIME_STEP);
