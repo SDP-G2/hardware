@@ -61,13 +61,13 @@ class SlaveController(WebotsNode):
         self.motor_front_right.setPosition(float('inf'))
         self.motor_front_right.setVelocity(0)
 
-        # self.motor_rear_left = self.robot.getDevice('wheel_motor_rear_left')
-        # self.motor_rear_left.setPosition(float('inf'))
-        # self.motor_rear_left.setVelocity(0)
+        self.motor_rear_left = self.robot.getDevice('wheel_motor_rear_left')
+        self.motor_rear_left.setPosition(float('inf'))
+        self.motor_rear_left.setVelocity(0)
 
-        # self.motor_rear_right = self.robot.getDevice('wheel_motor_rear_right')
-        # self.motor_rear_right.setPosition(float('inf'))
-        # self.motor_rear_right.setVelocity(0)
+        self.motor_rear_right = self.robot.getDevice('wheel_motor_rear_right')
+        self.motor_rear_right.setPosition(float('inf'))
+        self.motor_rear_right.setVelocity(0)
 
         self.motor_max_speed = self.motor_front_left.getMaxVelocity()
 
@@ -98,10 +98,10 @@ class SlaveController(WebotsNode):
 
         ## Robot properties 
         # Those two parameters need to be determined/adjusted experimentally
-        self.wheel_radius = .04
+        self.wheel_radius = .06
 
         # .12 for better odometry for arc turning; .14 for better in-place turning 
-        self.wheel_separation = .14 # 
+        self.wheel_separation = .39 # 
 
         # CHEAT: flag for initalising initial robot estimate with GOD values
         self.INIT_VARS = False
@@ -138,14 +138,15 @@ class SlaveController(WebotsNode):
         # Stop motors if we are blocking them
         if not self.are_motors_enabled:
             self.motor_front_left.setVelocity(0)
-            # self.motor_rear_left.setVelocity(0)
+            self.motor_rear_left.setVelocity(0)
             self.motor_front_right.setVelocity(0)
-            # self.motor_rear_right.setVelocity(0)
+            self.motor_rear_right.setVelocity(0)
 
         self.get_logger().info('Turning the motors {}!'.format('on' if self.are_motors_enabled else 'off'))
 
         response.enabled = self.are_motors_enabled
         return response
+
 
 
     def update_odometry(self):
@@ -189,6 +190,10 @@ class SlaveController(WebotsNode):
         else:
             ## V2 - source: https://www.cs.princeton.edu/courses/archive/fall11/cos495/COS495-Lecture5-Odometry.pdf
             # distance travelled by the center of the robot
+            
+            # do not use odometry while turning
+            # return
+
             d_center = (dist_travelled[0] + dist_travelled[1]) / 2
             
             # phi = change of theta (note the order of variables)
@@ -347,6 +352,27 @@ class SlaveController(WebotsNode):
         self.estimated_pose[1] = msg.y
         self.estimated_pose[2] = msg.z
 
+        # Publish odometry messages so other nodes can use it (e.g. for navigation)
+        odom = Odometry()
+        
+        current_time = self.get_clock().now().to_msg()
+
+        odom.header.frame_id = 'world'
+        odom._child_frame_id = 'base_link'
+        odom.header.stamp = current_time
+        
+        # set the position
+        odom.pose.pose.position.x = self.estimated_pose[0]
+        odom.pose.pose.position.y = self.estimated_pose[1]
+        q = quaternion_from_euler(0, 0, self.estimated_pose[2])
+        odom.pose.pose.orientation.x = q[0]
+        odom.pose.pose.orientation.y = q[1]
+        odom.pose.pose.orientation.z = q[2]
+        odom.pose.pose.orientation.w = q[3]
+
+        self.odometry_publisher.publish(odom)
+
+
 
     # Robot should be controlled using cmd_vel Twist messages with only two values set:
     # linear.x - v - linear velocity
@@ -370,9 +396,9 @@ class SlaveController(WebotsNode):
         print(left_speed)
 
         self.motor_front_left.setVelocity(left_speed)
-        # self.motor_rear_left.setVelocity(left_speed)
+        self.motor_rear_left.setVelocity(left_speed)
         self.motor_front_right.setVelocity(right_speed)
-        # self.motor_rear_right.setVelocity(right_speed)
+        self.motor_rear_right.setVelocity(right_speed)
 
 
 def main(args=None):

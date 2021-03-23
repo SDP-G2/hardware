@@ -11,8 +11,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.2881001395959731 0.9337222534008915 0.2125113245658736 4.917812740187393
-  position -13.543605114878012 8.24359249295291 3.7386481249254966
+  orientation 0.23590166442112845 0.952564948156562 0.19227694678985152 4.836530166257497
+  position -16.69036657976323 5.436833304759844 -1.813537226235432
 }
 TexturedBackground {
 }
@@ -668,11 +668,12 @@ DEF Camera_placeholder Solid {
   ]
 }
 ClayUno {
-  translation -3 0.0398051 -3.7
-  rotation 0 1 0 1.57
+  hidden rotation_2 0.04692170760938399 0.9814178149922993 0.18605758724319904 2.710823896918871e-05
+  translation -7.0008 0.109805 -4.86474
+  rotation 0 1 0 -0.000795307179585869
 }
 Solid {
-  translation -0.03 0.5 -0.7
+  translation -0.03 1 -0.7
   children [
     Shape {
       appearance PBRAppearance {
@@ -698,7 +699,7 @@ Solid {
   name "aruco_base_0"
 }
 Solid {
-  translation -0.03 0.5 0.7
+  translation -0.03 1 0.7
   children [
     Shape {
       appearance PBRAppearance {

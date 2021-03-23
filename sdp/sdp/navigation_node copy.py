@@ -77,7 +77,7 @@ class NavigationServer(Node):
 
 
     def navigate_callback(self):
-        
+        pass 
 
     def execute_callback(self, goal_handle):
         self.get_logger().info('Executing goal...')
