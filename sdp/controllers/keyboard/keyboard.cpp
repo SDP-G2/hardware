@@ -7,6 +7,7 @@
 #include <webots/InertialUnit.hpp>
 
 #include <iostream>
+#include <sstream>
 
 #define TIME_STEP 64
 using namespace webots;
@@ -25,10 +26,10 @@ int main(int argc, char **argv) {
     wheels[i]->setVelocity(0.0);
   }
   
-  DistanceSensor *ps[1];
+  DistanceSensor *ps[3];
   //Sharp's IR sensor GP2Y0A710K0F
-  char psNames[1][32] = {"distance_sensor_front"};
-  for (int i = 0; i < 1; i++) {
+  char psNames[3][32] = {"distance_sensor_left","distance_sensor_front","distance_sensor_right"};
+  for (int i = 0; i < 3; i++) {
   ps[i] = robot->getDistanceSensor(psNames[i]);
   ps[i]->enable(TIME_STEP);
 }
@@ -38,11 +39,11 @@ int main(int argc, char **argv) {
   double rightSpeed = 10.0;
   
   while (robot->step(TIME_STEP) != -1) {
-    double psValues[1];
-        for (int i = 0; i < 1 ; i++)
+    double psValues[3];
+        for (int i = 0; i < 3 ; i++)
           psValues[i] = ps[i]->getValue();
     
-    cout << psValues[0] <<endl;
+    cout << "Left: "<< psValues[0]<<" Front: "<< psValues[1] <<" Right: "<< psValues[2] << " "<< endl;
     
     int key=kb.getKey();
     
