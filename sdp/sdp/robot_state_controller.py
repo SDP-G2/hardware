@@ -171,11 +171,11 @@ class RobotStateController(Node):
 
 
     def generate_circular_path(self, end_x, end_y):
-        path = gen_circular(Point(-7., -3.), TURN_DIR.RIGHT, 12., 2, 0)
+        path = gen_circular(Point(-7.5, -3.), TURN_DIR.RIGHT, 12., 2, 0)
         return sum([ [p.x, p.y] for p in path ], [])
 
     def generate_zigzag_path(self, end_x, end_y):
-        path = gen_zig_zag(Point(-7., -3.), TURN_DIR.RIGHT, 12., 2, 0) 
+        path = gen_zig_zag(Point(-7.5, -3.), TURN_DIR.RIGHT, 12., 2, 0) 
         path = sum([ [p.x, p.y] for p in path ], [])
         # for p in path:
         #     self.get_logger().info(f'{p}')

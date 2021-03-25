@@ -44,7 +44,7 @@ def generate_launch_description():
         parameters=[
             {'camera_name': 'camera_1'},
             {'camera_x_res': '1920'},
-            {'max_range': '3'},
+            {'max_range': '5'},
         ],
         remappings=[
             ("/camera_0/image_raw", "/camera_1/image_raw"),
