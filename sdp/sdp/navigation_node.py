@@ -47,7 +47,7 @@ class NavigationServer(Node):
         self.path_to_follow = None
 
         # Robot pose subscriber
-        self.odom_subscriber = self.create_subscription(Odometry, '/GOD/odometry', self.odometry_callback, 10)
+        self.odom_subscriber = self.create_subscription(Odometry, '/odometry', self.odometry_callback, 10)
 
         # velocity command publisher
         self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)

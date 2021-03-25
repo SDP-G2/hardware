@@ -442,21 +442,21 @@ def generate_launch_description():
         package="tf2_ros",
         executable="static_transform_publisher",
         name="base_to_camera_transform",
-        arguments=["0.25", "0", "0.11", "-1.5708", "0", "0", "base_link", "camera_0"]
+        arguments=["0.243975", "-0.0408", "0.09", "-1.5708", "0", "0", "base_link", "camera_0"]
     )
 
     camera_1_static_tf = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         name="base_to_camera_transform",
-        arguments=["0", "0", "0.11", "-1.5708", "0", "0", "base_link", "camera_1"]
+        arguments=["-0.01", "0", "0.09", "-1.5708", "0", "0", "base_link", "camera_1"]
     )
 
     camera_2_static_tf = Node(
         package="tf2_ros",
         executable="static_transform_publisher",
         name="base_to_camera_transform",
-        arguments=["0.25", "0", "0.11", "-1.5708", "0", "0", "base_link", "camera_2"]
+        arguments=["0.2441", "0.03921", "0.09", "-1.5708", "0", "0", "base_link", "camera_2"]
     )
 
 
