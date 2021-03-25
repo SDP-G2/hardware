@@ -1,5 +1,6 @@
 import asyncio
 import json
+import math
 
 import rclpy
 from rclpy.action import ActionClient
@@ -121,9 +122,9 @@ class RobotStateController(Node):
                 self.current_command_status = CommandStatus.InProgress
 
                 if instruction == TaskTypes.TaskCircular:
-                    new_path = self.generate_circular_path(0,0)
+                    new_path = self.generate_pattern(gen_circular, curr_x_side=math.copysign(1, self.robot_pose[0]), angle=self.robot_pose[2])
                 elif instruction == TaskTypes.TaskZigZag:
-                    new_path = self.generate_zigzag_path(0,0)
+                    new_path = self.generate_pattern(gen_zig_zag, curr_x_side=math.copysign(1, self.robot_pose[0]), angle=self.robot_pose[2])
 
                 # TODO: Add moving from starting point and to finish point
                 self.send_follow_goal(new_path)
@@ -170,16 +171,45 @@ class RobotStateController(Node):
 
 
     def generate_circular_path(self, end_x, end_y):
-        path = gen_circular(Point(-6., -1.5), TURN_DIR.RIGHT, 12., 2, 0)
+        path = gen_circular(Point(-7., -3.), TURN_DIR.RIGHT, 12., 2, 0)
         return sum([ [p.x, p.y] for p in path ], [])
 
     def generate_zigzag_path(self, end_x, end_y):
-        path = gen_zig_zag(Point(-6., -1.5), TURN_DIR.RIGHT, 12., 2, 0) 
+        path = gen_zig_zag(Point(-7., -3.), TURN_DIR.RIGHT, 12., 2, 0) 
         path = sum([ [p.x, p.y] for p in path ], [])
         # for p in path:
         #     self.get_logger().info(f'{p}')
         return path
+    
+    def generate_pattern(self, path_generator, curr_x_side, angle):
+        def reverse_path(path):
+            rev_path = []
+            for i in reversed(range(0, len(path), 2)):
+                rev_path.append(path[i])
+                rev_path.append(path[i+1])
+            return rev_path
+            
+        DIST_FROM_CENTERLINE = 7.0
 
+        start_y_side = 1 if angle >= 0 else -1
+        path = path_generator(Point(-DIST_FROM_CENTERLINE, 2.0), TURN_DIR.LEFT, 7.0, 2.0, 0)
+        
+        # convert from list of points to list of form [x1, y1, x2, y2, ...]
+        path = sum([ [p.x, p.y] for p in path ], [])
+
+        # reverse the side
+        if path[-2] * curr_x_side < 0:
+            path = [ coord if i % 2 else -coord for i, coord in enumerate(path) ]
+        path_2 = [ -coord if i % 2 else coord for i, coord in enumerate(path) ] 
+
+        pattern = reverse_path(path) + path_2 if start_y_side > 0 else reverse_path(path_2) + path
+
+        # Robot needs tp come back to the center of the court
+        pattern += [math.copysign(DIST_FROM_CENTERLINE, pattern[-2]), math.copysign(2.0, pattern[-1])]
+
+        self.get_logger().info(f'Generated new path: {pattern}')
+
+        return pattern
 
     def odometry_callback(self, msg):
         x = msg.pose.pose.position.x

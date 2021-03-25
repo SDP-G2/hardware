@@ -27,9 +27,42 @@ def generate_launch_description():
 
     # # Throws some strange error when launched together with the main controller
     #  TODO: Resolve it with Webots expert
-    aruco_localization = Node(
+    aruco_localization_0 = Node(
         package="sdp",
-        executable="aruco_pose_estimator"
+        executable="aruco_pose_estimator",
+        parameters=[
+            {'camera_x_res': '1920'}
+        ]
+    )
+
+
+    # TODO: TRY TO DECREASE THE RANGE OF FRONT CAMERAS BY ONE METER
+
+    aruco_localization_1 = Node(
+        package="sdp",
+        executable="aruco_pose_estimator",
+        parameters=[
+            {'camera_name': 'camera_1'},
+            {'camera_x_res': '1920'},
+            {'max_range': '3'},
+        ],
+        remappings=[
+            ("/camera_0/image_raw", "/camera_1/image_raw"),
+            ("/camera_0/processed", "/camera_1/processed")
+        ]
+    )
+
+    aruco_localization_2 = Node(
+        package="sdp",
+        executable="aruco_pose_estimator",
+        parameters=[
+            {'camera_name': 'camera_2'},
+            {'camera_x_res': '1920'}
+        ],
+        remappings=[
+            ("/camera_0/image_raw", "/camera_2/image_raw"),
+            ("/camera_0/processed", "/camera_2/processed")
+        ]
     )
 
     robot_state_controller = Node(
@@ -68,5 +101,6 @@ def generate_launch_description():
     # )
     
     return LaunchDescription([
-        aruco_localization, navigation, robot_state_controller
+        aruco_localization_0, aruco_localization_1, aruco_localization_2, 
+        navigation, robot_state_controller
     ])

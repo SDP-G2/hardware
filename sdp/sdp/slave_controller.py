@@ -101,7 +101,7 @@ class SlaveController(WebotsNode):
         self.wheel_radius = .06
 
         # .12 for better odometry for arc turning; .14 for better in-place turning 
-        self.wheel_separation = .39 # 
+        self.wheel_separation = .50 # 
 
         # CHEAT: flag for initalising initial robot estimate with GOD values
         self.INIT_VARS = False

@@ -14,11 +14,15 @@ import functools
 import math
 
 # Size of the marker in the environment 
-MARKER_SIZE = 0.5
+MARKER_SIZE = 0.4
 
 class ImageProcessor(Node):
     def __init__(self):
         super().__init__('image_processor_node')
+
+        self.declare_parameter('camera_name', 'camera_0')
+        self.declare_parameter('max_range', '9')
+        self.declare_parameter('camera_x_res', '1280')
 
         ## Node's subscribers / publishers
         self.camera_subscriber = self.create_subscription(Image, '/camera_0/image_raw', self.image_processing_callback, 1)
@@ -37,10 +41,15 @@ class ImageProcessor(Node):
         self.bridge = CvBridge()
         
         # Aruco things
-        self.aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_50)
+        self.aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_1000)
         self.aruco_detector_parameters = aruco.DetectorParameters_create()
 
         self.get_logger().info('INIT COMPLETE')
+
+        self.camera_x_res = int(self.get_parameter('camera_x_res').get_parameter_value().string_value)
+        self.max_range = float(self.get_parameter('max_range').get_parameter_value().string_value)
+        self.camera_name = self.get_parameter('camera_name').get_parameter_value().string_value
+        self.get_logger().info(f'{self.camera_name}')
 
 
     def euclidean_distance(self, x, y, z):
@@ -59,7 +68,8 @@ class ImageProcessor(Node):
         # f = res_x/(2*tan(fov/2))
         # for fov = 0.785 # Webots' default where no LENS param is set
         # source: comment in https://stackoverflow.com/questions/61555182/webot-camera-default-parameters-like-pixel-size-and-focus
-        f = 1533.88925565
+        f = 1533.88925565 if self.camera_x_res == 1280 else 2318.956708175
+        # f = 2318.956708175 # 1080p
 
         # ideal camera and distortion matrices
         camera_matrix = np.mat([[f, 0.0, width/2.0], [0.0, f, height/2.0], [0.0, 0.0, 1.0]])
@@ -76,16 +86,20 @@ class ImageProcessor(Node):
 
             ## draw a square around the markers
             aruco.drawDetectedMarkers(frame, corners)
+
+            camera_name = self.get_parameter('camera_name').get_parameter_value().string_value
             
             # Get the transform from the camera_0 to robot's base_link
             try:
-                T_c_b = self.get_htm('camera_0', 'base_link', time)
+                T_c_b = self.get_htm(camera_name, 'base_link', time)
             except:
-                self.get_logger().warn(f'Cannot get camera_0->base_link transform at time={time}')
+                self.get_logger().warn(f'Cannot get {camera_name}->base_link transform at time={time}')
                 return
 
             # list contating the pose estimates from all detected markers
             pose_estimates = []
+
+            # self.get_logger().warn(f'{ids.size}')
 
             for i in range(0, ids.size):
                 # ID of the aruco that is currently being processed
@@ -97,8 +111,8 @@ class ImageProcessor(Node):
 
                 dist_to_marker = self.euclidean_distance(tvec[0][0][0], tvec[0][0][1], tvec[0][0][2])
 
-                if dist_to_marker > 6 or dist_to_marker < 2:
-                    self.get_logger().info(f'Dist to marker = {dist_to_marker}')
+                if dist_to_marker > self.max_range:
+                    # self.get_logger().info(f'Dist to marker = {dist_to_marker}')
                     continue
 
                 ## draw axis on the aruco markers

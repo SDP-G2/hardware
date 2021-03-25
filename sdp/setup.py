@@ -23,7 +23,23 @@ data_files.append(
 )
 
 data_files.append(
-    (os.path.join('share', package_name, 'worlds', 'textures'), glob('worlds/textures/*'))
+    (os.path.join('share', package_name, 'worlds'), ['worlds/tennis_court_env.wbt'])
+)
+
+data_files.append(
+    (os.path.join('share', package_name, 'worlds', 'textures'), glob('worlds/textures/*.png'))
+)
+
+data_files.append(
+    (os.path.join('share', package_name, 'worlds', 'textures'), glob('worlds/textures/*.jpg'))
+)
+
+data_files.append(
+    (os.path.join('share', package_name, 'worlds', 'textures'), glob('worlds/textures/*.jpeg'))
+)
+
+data_files.append(
+    (os.path.join('share', package_name, 'worlds', 'textures', 'Markers_PNG'), glob('worlds/textures/Markers_PNG/*'))
 )
 
 data_files.append(

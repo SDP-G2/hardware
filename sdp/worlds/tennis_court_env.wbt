@@ -1,0 +1,1862 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.44576994573386985 -0.8875671654262224 0.11624836488176342 5.511701398529269
+  position 4.99781424317325 7.0341054289583385 11.815661223960005
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 36.576 18.288
+  tileSize 3 3
+  appearance SandyGround {
+    colorOverride 0.581399 0.190173 0.0117494
+  }
+}
+DEF MiddleNet Solid {
+  translation 0 0.5 0
+  children [
+    DEF Pole_2 Transform {
+      translation 0 0 -6
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 1.07
+            radius 0.04
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      translation 0 1 6
+      scale 1 3 1
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 1.07
+            radius 0.04
+          }
+        }
+      ]
+    }
+    DEF Net Transform {
+      scale 5 1 1
+      children [
+        Shape {
+          appearance WireFence {
+            colorOverride 1 0.999969 0.999985
+            textureTransform TextureTransform {
+              scale 73.152 5.35
+            }
+          }
+          geometry Box {
+            size 0.01 1.07 12
+          }
+        }
+      ]
+    }
+  ]
+  name "Net (solid)"
+  boundingObject DEF Net Transform {
+    scale 5 1 1
+    children [
+      Shape {
+        appearance WireFence {
+          colorOverride 1 0.999969 0.999985
+          textureTransform TextureTransform {
+            scale 73.152 5.35
+          }
+        }
+        geometry Box {
+          size 0.01 1.07 12
+        }
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF Lines Solid {
+  translation 0 0 0.01
+  children [
+    Transform {
+      translation 0 0.01 0
+      scale 23.78 10 10.97
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/courtLines.png"
+              ]
+            }
+          }
+          geometry Plane {
+          }
+        }
+      ]
+    }
+  ]
+  name "Lines (solid)"
+  locked TRUE
+}
+DEF Long_No_Door_Fence Solid {
+  translation 18.288 1.6002 9.144
+  children [
+    DEF Pole_12 Transform {
+      translation -36.576 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_11 Transform {
+      translation -33.528 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -30.48 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -27.432 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_9 Transform {
+      translation -24.384 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_8 Transform {
+      translation -21.336 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_7 Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_6 Transform {
+      translation -15.24 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation -12.192 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation -9.114 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation -6.096 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation -3.048 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 109.728 9.6012
+            }
+          }
+          geometry Box {
+            size 36.576 3.2004 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "Fence_No_Door(solid)"
+  boundingObject Group {
+    children [
+      Transform {
+        translation -18.288 0 0
+        children [
+          Box {
+            size 36.576 3.2004 0.01
+          }
+        ]
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF Long_With_Door_Fence Solid {
+  translation 18.288 1.6002 -9.144
+  children [
+    DEF Pole_11 Transform {
+      translation -33.528 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -30.48 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_10 Transform {
+      translation -27.432 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_9 Transform {
+      translation -24.384 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_8 Transform {
+      translation -21.336 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_7 Transform {
+      translation -18.288 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_6 Transform {
+      translation -15.24 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation -12.192 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation -9.114 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation -6.096 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation -3.048 0 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation -16.764 0 0
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 100.584 9.6012
+            }
+          }
+          geometry Box {
+            size 33.528 3.2004 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "Fence_Pole_With_Door (solid)"
+  boundingObject Transform {
+    translation -16.764 0 0
+    children [
+      Box {
+        size 33.528 3.2004 0.01
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF Short_Fence_Close_Door Solid {
+  translation -18.288 0 -9.144
+  children [
+    DEF Pole_6 Transform {
+      translation 0 1.6002 15.24
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation 0 1.6002 12.192
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation 0 1.6002 6.096
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation 0 1.6002 3.048
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_1 Transform {
+      translation 0 1.6002 0
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 54.864 9.6012
+            }
+          }
+          geometry Box {
+            size 0.01 3.2004 18.288
+          }
+        }
+      ]
+    }
+  ]
+  name "fence_close_to_door(solid)"
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 1.6002 9.144
+        children [
+          Box {
+            size 0.01 3.2004 18.288
+          }
+        ]
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF Short_Fence_Far_From_Door Solid {
+  translation 18.288 0 -9.144
+  children [
+    DEF Pole_6 Transform {
+      translation 0 1.6002 15.24
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_5 Transform {
+      translation 0 1.6002 12.192
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_4 Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_3 Transform {
+      translation 0 1.6002 6.096
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Pole_2 Transform {
+      translation 0 1.6002 3.048
+      children [
+        Shape {
+          appearance CorrodedMetal {
+          }
+          geometry Cylinder {
+            height 3.2004
+            radius 0.03
+          }
+        }
+      ]
+    }
+    DEF Fence Transform {
+      translation 0 1.6002 9.144
+      children [
+        Shape {
+          appearance WireFence {
+            textureTransform TextureTransform {
+              scale 54.864 9.6012
+            }
+          }
+          geometry Box {
+            size 0.01 3.2004 18.288
+          }
+        }
+      ]
+    }
+  ]
+  name "fence_far_from_door(solid)"
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 1.6002 9.144
+        children [
+          Box {
+            size 0.01 3.2004 18.288
+          }
+        ]
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF Camera_placeholder Solid {
+  translation 0 3.19964 6
+  rotation 1 0 0 -0.261795307179586
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 1
+      }
+      geometry Box {
+        size 0.25 0.25 0.4
+      }
+    }
+  ]
+}
+ClayUno {
+  hidden rotation_2 0.046921704628599674 0.9814178173755823 0.18605757542356227 2.710823896918871e-05
+  translation -7.0008 0.109805 -4.86474
+  rotation 0 1 0 -0.000795307179585869
+}
+DEF ArUco_Markers_Group4 Group {
+  children [
+    DEF M400 Solid {
+      translation 17 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        DEF ARUCO_BACK Shape {
+          geometry Box {
+            size 1e-05 0.6 0.6
+          }
+        }
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-400.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M400"
+    }
+    DEF M401 Solid {
+      translation 15 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-401.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M401"
+    }
+    DEF M402 Solid {
+      translation 13 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-402.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M402"
+    }
+    DEF M403 Solid {
+      translation 11 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-403.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M403"
+    }
+    DEF M404 Solid {
+      translation 9 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-404.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M404"
+    }
+    DEF M405 Solid {
+      translation 7 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-405.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M405"
+    }
+    DEF M406 Solid {
+      translation 5 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-406.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M406"
+    }
+    DEF M407 Solid {
+      translation 3 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-407.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M407"
+    }
+    DEF M408 Solid {
+      translation 1 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-408.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M408"
+    }
+    DEF M409 Solid {
+      translation -1 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-409.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M409"
+    }
+    DEF M410 Solid {
+      translation -3 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-410.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M410"
+    }
+    DEF M411 Solid {
+      translation -5 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-411.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M411"
+    }
+    DEF M412 Solid {
+      translation -7 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-412.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M412"
+    }
+    DEF M413 Solid {
+      translation -9 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-413.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M413"
+    }
+    DEF M414 Solid {
+      translation -11 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-414.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M414"
+    }
+    DEF M415 Solid {
+      translation -13 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-415.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M415"
+    }
+    DEF M416 Solid {
+      translation -15 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-416.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M416"
+    }
+    DEF M417 Solid {
+      translation -17 0.6 9.1
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-417.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M417"
+    }
+  ]
+}
+DEF ArUco_Markers_Group1 Group {
+  children [
+    DEF M100 Solid {
+      translation -18.25 0.6 8.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-100.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(1)"
+    }
+    DEF M101 Solid {
+      translation -18.25 0.6 6.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-101.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(2)"
+    }
+    DEF M102 Solid {
+      translation -18.25 0.6 4.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-102.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(3)"
+    }
+    DEF M103 Solid {
+      translation -18.25 0.6 2.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-103.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(4)"
+    }
+    DEF M104 Solid {
+      translation -18.25 0.6 0.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-104.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(5)"
+    }
+    DEF M105 Solid {
+      translation -18.25 0.6 -1.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-105.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(6)"
+    }
+    DEF M106 Solid {
+      translation -18.25 0.6 -3.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-106.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(7)"
+    }
+    DEF M107 Solid {
+      translation -18.25 0.6 -5.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-107.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(8)"
+    }
+    DEF M108 Solid {
+      translation -18.25 0.6 -7.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-108.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(9)"
+    }
+    DEF M109 Solid {
+      translation -18.25 0.6 -8.5
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-109.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "solid(10)"
+    }
+  ]
+}
+DEF ArUco_Markers_Group3 Group {
+  children [
+    DEF M300 Solid {
+      translation 18.25 0.6 -8.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-300.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M300"
+    }
+    DEF M301 Solid {
+      translation 18.25 0.6 -6.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-301.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M301"
+    }
+    DEF M302 Solid {
+      translation 18.25 0.6 -4.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-302.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M302"
+    }
+    DEF M303 Solid {
+      translation 18.25 0.6 -2.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-303.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M303"
+    }
+    DEF M304 Solid {
+      translation 18.25 0.6 -0.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-304.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M304"
+    }
+    DEF M305 Solid {
+      translation 18.25 0.6 1.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-305.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M305"
+    }
+    DEF M306 Solid {
+      translation 18.25 0.6 3.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-306.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M306"
+    }
+    DEF M307 Solid {
+      translation 18.25 0.6 5.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-307.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M307"
+    }
+    DEF M308 Solid {
+      translation 18.25 0.6 7.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-308.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M308"
+    }
+    DEF M309 Solid {
+      translation 18.25 0.6 8.5
+      rotation 0 1 0 3.14159
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-309.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M309"
+    }
+  ]
+}
+DEF ArUco_Markers_Group2 Group {
+  children [
+    DEF M200 Solid {
+      translation -15 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-200.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M200"
+    }
+    DEF M201 Solid {
+      translation -13 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-201.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M201"
+    }
+    DEF M202 Solid {
+      translation -11 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-202.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M202"
+    }
+    DEF M203 Solid {
+      translation -9 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-203.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M203"
+    }
+    DEF M204 Solid {
+      translation -7 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-204.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M204"
+    }
+    DEF M205 Solid {
+      translation -5 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-205.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M205"
+    }
+    DEF M206 Solid {
+      translation -3 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-206.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M206"
+    }
+    DEF M207 Solid {
+      translation -1 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-207.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M207"
+    }
+    DEF M208 Solid {
+      translation 1 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-208.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M208"
+    }
+    DEF M209 Solid {
+      translation 3 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-209.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M209"
+    }
+    DEF M210 Solid {
+      translation 5 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-210.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M210"
+    }
+    DEF M211 Solid {
+      translation 7 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-211.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M211"
+    }
+    DEF M212 Solid {
+      translation 9 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-212.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M212"
+    }
+    DEF M213 Solid {
+      translation 11 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-213.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M213"
+    }
+    DEF M214 Solid {
+      translation 13 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-214.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M214"
+    }
+    DEF M215 Solid {
+      translation 15 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-215.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M215"
+    }
+    DEF M216 Solid {
+      translation 17 0.6 -9.1
+      rotation 0 -1 0 1.5708
+      children [
+        USE ARUCO_BACK
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Markers_PNG/4x4_1000-216.png"
+              ]
+            }
+          }
+          geometry Box {
+            size 0.002 0.4 0.4
+          }
+        }
+      ]
+      name "M216"
+    }
+  ]
+}
+Charger {
+  translation 17 0 8
+  children [
+    Solid {
+      children [
+        Shape {
+          appearance Appearance {
+            texture ImageTexture {
+              url [
+                "textures/Power.jpeg"
+              ]
+            }
+          }
+          geometry Cylinder {
+            height 0.01
+          }
+        }
+      ]
+    }
+  ]
+  radius 1
+}
