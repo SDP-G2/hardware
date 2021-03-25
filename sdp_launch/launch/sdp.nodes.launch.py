@@ -35,7 +35,7 @@ def generate_launch_description():
         ]
     )
 
-
+    
     # TODO: TRY TO DECREASE THE RANGE OF FRONT CAMERAS BY ONE METER
 
     aruco_localization_1 = Node(

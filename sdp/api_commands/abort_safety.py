@@ -14,7 +14,7 @@ message = {
 }
 
 headers = {
-    'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMSIsImV4cCI6MTYxNjU5NTk1Nn0.bUF6dhjEerDMMaDuRANwmbcr1RqMrCjVIG6wt4_xrp0'
+    'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJ1c2VyMSIsImV4cCI6MTYxNjc2NTM1NH0.w7q7HLhYnYIrUwrjbYdkvQ05flKRdvVWki53QjZL79g'
 }
 
 res = requests.post('http://localhost:8000/command', json=message, headers=headers)

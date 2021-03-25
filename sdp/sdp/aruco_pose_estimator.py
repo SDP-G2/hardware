@@ -55,6 +55,9 @@ class ImageProcessor(Node):
     def euclidean_distance(self, x, y, z):
         return math.sqrt(x**2+y**2+z**2)
 
+    def euclidean_distance(self, x, y, z):
+        return math.sqrt(x**2+y**2+z**2)
+
     def image_processing_callback(self, msg):
         # Get timestamp for the operation
         time = self.get_clock().now()
